@@ -1,0 +1,465 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 8em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD20\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">2022-12-30</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">10:23:20 PM</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:01</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc" class="file"><acronym title="D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc">D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">39</td></tr>
+</table>
+</td>
+</table><a name="IDAKF0LEDZDEP3ETLEFC1M2DPTHBN5WLD1GNVXJXCNTK2VVAR4PA0O"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDR43ELQK1X5NMMHUCJRETQK3WNP2BOOJ00ALVYUBEKRS3DYLZIL0">Clearance Constraint (Gap=0.381mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDUZE53GM0NXDDCIQT3FGCVFJBVIIAVQEWKHJ04FLLEWEFNY5I3WWO">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDEOG4VUUFHEF5M00ZE0UVHHCMNK0ABENXK2KX3TITJHLBFDCAUX5I">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">1</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDHADRFUI1X0A5CCGSPAX0VAUK1F2AZ3VU4VTQZOENOGBKYJRXWZEC">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDEXUR0Z00UKWNIU3ICS5O3GPPRJ1LRUX0DGMG5NMC50YVWBUZYBB">Width Constraint (Min=0.254mm) (Max=12.7mm) (Preferred=0.508mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDIYBV4G3PFJAWQPY3XCVNGUMJOXEU1RILIFI0HMKL1O0VJPXTZHF">Power Plane Connect Rule(Relief Connect )(Expansion=0.508mm) (Conductor Width=0.254mm) (Air Gap=0.254mm) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDEEPU4A3VBRPXZHBXNWUUKPP1P0SXYN3XDT4MXHVTRH4I3U0BJVN">Hole Size Constraint (Min=0.025mm) (Max=2.54mm) (All)</a></td>
+<td class="column2">4</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDTFF3B1IXBF15O4MI1OEDCN542MUJ3PJFYHTKHTHQX3ELPYZJPE5H">Hole To Hole Clearance (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDGOAZ4F1PD0G4BP3PFKV21BDCRNTCJ4TGKK54TOFMX3OUPS4P2OFB">Minimum Solder Mask Sliver (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">2</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDF511LPQOH5MFM4NOYCFG4MYWBOA11FBCBDYAIYK3WGY3XH4PJOOO">Silk To Solder Mask (Clearance=0.254mm) (IsPad),(All)</a></td>
+<td class="column2">29</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDI0GML4E3GOXSJPEJLUFDYHIMEGFUOT2ET0RRMVESUM4RZ2O3C0EK">Silk to Silk (Clearance=0.254mm) (All),(All)</a></td>
+<td class="column2">1</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDCKEJC35WOQ1IGINUY4MHYDLXJHRA205X2HSEUBGPGEBTJDK4WYRG">Net Antennae (Tolerance=0mm) (All)</a></td>
+<td class="column2">2</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID51WT44D32KLIOIXPAPGXPP5MEHSVKDU34UNETUFVM4IWLAQCDECH">Height Constraint (Min=0mm) (Max=25.4mm) (Prefered=12.7mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">39</td>
+</tr>
+</table><br><a name="IDEOG4VUUFHEF5M00ZE0UVHHCMNK0ABENXK2KX3TITJHLBFDCAUX5I"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Un-Routed Net Constraint ( (All) )</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2065.852mil|Location2.X=2160.196mil|Location1.Y=1704.78mil|Location2.Y=2012.03mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2065.852mil|Location2.X=2160.196mil|Location1.Y=1704.78mil|Location2.Y=2012.03mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C2-2(28.194mm,19.03mm) on Multi-Layer And Pad R1-2(28.271mm,24.634mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDEEPU4A3VBRPXZHBXNWUUKPP1P0SXYN3XDT4MXHVTRH4I3U0BJVN"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Hole Size Constraint (Min=0.025mm) (Max=2.54mm) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1038.745mil|Location2.X=1158.105mil|Location1.Y=1033.745mil|Location2.Y=1153.105mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1038.745mil|Location2.X=1158.105mil|Location1.Y=1033.745mil|Location2.Y=1153.105mil|Absolute=True">Hole Size Constraint: (3mm &gt; 2.54mm) Pad Free-2(2.5mm,2.5mm) on Multi-Layer Actual Hole Size = 3mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1038.745mil|Location2.X=1158.105mil|Location1.Y=1860.517mil|Location2.Y=1979.877mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1038.745mil|Location2.X=1158.105mil|Location1.Y=1860.517mil|Location2.Y=1979.877mil|Absolute=True">Hole Size Constraint: (3mm &gt; 2.54mm) Pad Free-2(2.5mm,23.5mm) on Multi-Layer Actual Hole Size = 3mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3440.32mil|Location2.X=3559.68mil|Location1.Y=1033.745mil|Location2.Y=1153.105mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3440.32mil|Location2.X=3559.68mil|Location1.Y=1033.745mil|Location2.Y=1153.105mil|Absolute=True">Hole Size Constraint: (3mm &gt; 2.54mm) Pad Free-2(63.5mm,2.5mm) on Multi-Layer Actual Hole Size = 3mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3440.32mil|Location2.X=3559.68mil|Location1.Y=1860.517mil|Location2.Y=1979.877mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3440.32mil|Location2.X=3559.68mil|Location1.Y=1860.517mil|Location2.Y=1979.877mil|Absolute=True">Hole Size Constraint: (3mm &gt; 2.54mm) Pad Free-2(63.5mm,23.5mm) on Multi-Layer Actual Hole Size = 3mm</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDGOAZ4F1PD0G4BP3PFKV21BDCRNTCJ4TGKK54TOFMX3OUPS4P2OFB"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Minimum Solder Mask Sliver (Gap=0.254mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2274.69mil|Location2.X=2285.94mil|Location1.Y=1379.375mil|Location2.Y=1390.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2274.69mil|Location2.X=2285.94mil|Location1.Y=1379.375mil|Location2.Y=1390.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.067mm &lt; 0.254mm) Between Pad Q1-1(33.02mm,9.271mm) on Multi-Layer And Pad Q1-2(33.02mm,10.541mm) on Multi-Layer [Top Solder] Mask Sliver [0.067mm] / [Bottom Solder] Mask Sliver [0.067mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2274.69mil|Location2.X=2285.94mil|Location1.Y=1429.375mil|Location2.Y=1440.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2274.69mil|Location2.X=2285.94mil|Location1.Y=1429.375mil|Location2.Y=1440.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.067mm &lt; 0.254mm) Between Pad Q1-2(33.02mm,10.541mm) on Multi-Layer And Pad Q1-3(33.02mm,11.811mm) on Multi-Layer [Top Solder] Mask Sliver [0.067mm] / [Bottom Solder] Mask Sliver [0.067mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDF511LPQOH5MFM4NOYCFG4MYWBOA11FBCBDYAIYK3WGY3XH4PJOOO"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk To Solder Mask (Clearance=0.254mm) (IsPad),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2078.716mil|Location2.X=2091.802mil|Location1.Y=1763.957mil|Location2.Y=1775.207mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2078.716mil|Location2.X=2091.802mil|Location1.Y=1763.957mil|Location2.Y=1775.207mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.105mm &lt; 0.254mm) Between Pad C2-2(28.194mm,19.03mm) on Multi-Layer And Region (0 hole(s)) Top Overlay [Top Overlay] to [Top Solder] clearance [0.105mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2447.292mil|Location2.X=2460.876mil|Location1.Y=1362.688mil|Location2.Y=1373.938mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2447.292mil|Location2.X=2460.876mil|Location1.Y=1362.688mil|Location2.Y=1373.938mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.244mm &lt; 0.254mm) Between Pad D2-1(36.957mm,8.621mm) on Multi-Layer And Track (36.957mm,9.646mm)(36.957mm,10.271mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.244mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2446.183mil|Location2.X=2458.507mil|Location1.Y=1597.566mil|Location2.Y=1608.816mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2446.183mil|Location2.X=2458.507mil|Location1.Y=1597.566mil|Location2.Y=1608.816mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.201mm &lt; 0.254mm) Between Pad D2-2(36.957mm,16.271mm) on Multi-Layer And Track (36.957mm,14.671mm)(36.957mm,15.321mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.201mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1081.89mil|Location2.X=1093.14mil|Location1.Y=1599.611mil|Location2.Y=1610.861mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1081.89mil|Location2.X=1093.14mil|Location1.Y=1599.611mil|Location2.Y=1610.861mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.162mm &lt; 0.254mm) Between Pad P1-1(3.302mm,15.5mm) on Multi-Layer And Track (1.602mm,15.5mm)(2.102mm,15.5mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.162mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1082.058mil|Location2.X=1093.308mil|Location1.Y=1402.91mil|Location2.Y=1414.16mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1082.058mil|Location2.X=1093.308mil|Location1.Y=1402.91mil|Location2.Y=1414.16mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.17mm &lt; 0.254mm) Between Pad P1-2(3.302mm,10.5mm) on Multi-Layer And Track (1.602mm,10.5mm)(2.102mm,10.5mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.17mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2895.95mil|Location2.X=2907.2mil|Location1.Y=1066.853mil|Location2.Y=1078.103mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2895.95mil|Location2.X=2907.2mil|Location1.Y=1066.853mil|Location2.Y=1078.103mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.16mm &lt; 0.254mm) Between Pad P2-1(48.3mm,3.048mm) on Multi-Layer And Track (48.3mm,1.348mm)(48.3mm,1.848mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.16mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3088.745mil|Location2.X=3100.163mil|Location1.Y=1066.986mil|Location2.Y=1078.236mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3088.745mil|Location2.X=3100.163mil|Location1.Y=1066.986mil|Location2.Y=1078.236mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.241mm &lt; 0.254mm) Between Pad P2-2(53.3mm,3.048mm) on Multi-Layer And Track (53.3mm,1.348mm)(53.3mm,1.848mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.241mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1797.8mil|Location2.X=1809.05mil|Location1.Y=1911.897mil|Location2.Y=1923.147mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1797.8mil|Location2.X=1809.05mil|Location1.Y=1911.897mil|Location2.Y=1923.147mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.16mm &lt; 0.254mm) Between Pad P3-1(20.407mm,22.352mm) on Multi-Layer And Track (20.407mm,23.552mm)(20.407mm,24.052mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.16mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1596.895mil|Location2.X=1608.377mil|Location1.Y=1911.764mil|Location2.Y=1923.014mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1596.895mil|Location2.X=1608.377mil|Location1.Y=1911.764mil|Location2.Y=1923.014mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.241mm &lt; 0.254mm) Between Pad P3-2(15.407mm,22.352mm) on Multi-Layer And Track (15.407mm,23.552mm)(15.407mm,24.052mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.241mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3511.441mil|Location2.X=3522.691mil|Location1.Y=1402.761mil|Location2.Y=1414.011mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3511.441mil|Location2.X=3522.691mil|Location1.Y=1402.761mil|Location2.Y=1414.011mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.183mm &lt; 0.254mm) Between Pad P5-1(62.865mm,10.5mm) on Multi-Layer And Track (64.065mm,10.5mm)(64.565mm,10.5mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.183mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3511.012mil|Location2.X=3522.262mil|Location1.Y=1599.611mil|Location2.Y=1610.861mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3511.012mil|Location2.X=3522.262mil|Location1.Y=1599.611mil|Location2.Y=1610.861mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.205mm &lt; 0.254mm) Between Pad P5-2(62.865mm,15.5mm) on Multi-Layer And Track (64.065mm,15.5mm)(64.565mm,15.5mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.205mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2441.858mil|Location2.X=2453.108mil|Location1.Y=1806.259mil|Location2.Y=1817.509mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2441.858mil|Location2.X=2453.108mil|Location1.Y=1806.259mil|Location2.Y=1817.509mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.194mm &lt; 0.254mm) Between Pad R1-1(37.515mm,20.324mm) on Multi-Layer And Track (35.974mm,21.042mm)(36.609mm,20.746mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.194mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2136.352mil|Location2.X=2147.602mil|Location1.Y=1942.681mil|Location2.Y=1953.931mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2136.352mil|Location2.X=2147.602mil|Location1.Y=1942.681mil|Location2.Y=1953.931mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.222mm &lt; 0.254mm) Between Pad R1-2(28.271mm,24.634mm) on Multi-Layer And Track (29.177mm,24.212mm)(29.812mm,23.916mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.222mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1646.324mil|Location2.X=1657.574mil|Location1.Y=1228.509mil|Location2.Y=1239.759mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1646.324mil|Location2.X=1657.574mil|Location1.Y=1228.509mil|Location2.Y=1239.759mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.125mm &lt; 0.254mm) Between Pad R2-1(17.272mm,5.649mm) on Bottom Layer And Track (16.447mm,5.487mm)(16.447mm,6.274mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.125mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1648.784mil|Location2.X=1660.034mil|Location1.Y=1231.462mil|Location2.Y=1242.712mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1648.784mil|Location2.X=1660.034mil|Location1.Y=1231.462mil|Location2.Y=1242.712mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.15mm &lt; 0.254mm) Between Pad R2-1(17.272mm,5.649mm) on Bottom Layer And Track (16.447mm,6.274mm)(18.097mm,6.274mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.15mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1702.426mil|Location2.X=1713.676mil|Location1.Y=1228.509mil|Location2.Y=1239.759mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1702.426mil|Location2.X=1713.676mil|Location1.Y=1228.509mil|Location2.Y=1239.759mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.125mm &lt; 0.254mm) Between Pad R2-1(17.272mm,5.649mm) on Bottom Layer And Track (18.097mm,6.274mm)(18.097mm,5.487mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.125mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1699.966mil|Location2.X=1711.216mil|Location1.Y=1117.288mil|Location2.Y=1128.538mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1699.966mil|Location2.X=1711.216mil|Location1.Y=1117.288mil|Location2.Y=1128.538mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.15mm &lt; 0.254mm) Between Pad R2-2(17.272mm,3.749mm) on Bottom Layer And Track (16.447mm,3.124mm)(18.097mm,3.124mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.15mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1646.324mil|Location2.X=1657.574mil|Location1.Y=1120.241mil|Location2.Y=1131.491mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1646.324mil|Location2.X=1657.574mil|Location1.Y=1120.241mil|Location2.Y=1131.491mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.125mm &lt; 0.254mm) Between Pad R2-2(17.272mm,3.749mm) on Bottom Layer And Track (16.447mm,3.911mm)(16.447mm,3.124mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.125mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1702.426mil|Location2.X=1713.676mil|Location1.Y=1120.241mil|Location2.Y=1131.491mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1702.426mil|Location2.X=1713.676mil|Location1.Y=1120.241mil|Location2.Y=1131.491mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.125mm &lt; 0.254mm) Between Pad R2-2(17.272mm,3.749mm) on Bottom Layer And Track (18.097mm,3.124mm)(18.097mm,3.911mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.125mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1609.966mil|Location2.X=1621.216mil|Location1.Y=1117.288mil|Location2.Y=1128.538mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1609.966mil|Location2.X=1621.216mil|Location1.Y=1117.288mil|Location2.Y=1128.538mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.15mm &lt; 0.254mm) Between Pad R3-1(14.986mm,3.749mm) on Bottom Layer And Track (14.161mm,3.124mm)(15.811mm,3.124mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.15mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1556.324mil|Location2.X=1567.574mil|Location1.Y=1120.241mil|Location2.Y=1131.491mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1556.324mil|Location2.X=1567.574mil|Location1.Y=1120.241mil|Location2.Y=1131.491mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.125mm &lt; 0.254mm) Between Pad R3-1(14.986mm,3.749mm) on Bottom Layer And Track (14.161mm,3.911mm)(14.161mm,3.124mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.125mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1612.426mil|Location2.X=1623.676mil|Location1.Y=1120.241mil|Location2.Y=1131.491mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1612.426mil|Location2.X=1623.676mil|Location1.Y=1120.241mil|Location2.Y=1131.491mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.125mm &lt; 0.254mm) Between Pad R3-1(14.986mm,3.749mm) on Bottom Layer And Track (15.811mm,3.124mm)(15.811mm,3.911mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.125mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1556.324mil|Location2.X=1567.574mil|Location1.Y=1228.509mil|Location2.Y=1239.759mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1556.324mil|Location2.X=1567.574mil|Location1.Y=1228.509mil|Location2.Y=1239.759mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.125mm &lt; 0.254mm) Between Pad R3-2(14.986mm,5.649mm) on Bottom Layer And Track (14.161mm,5.487mm)(14.161mm,6.274mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.125mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1558.784mil|Location2.X=1570.034mil|Location1.Y=1231.462mil|Location2.Y=1242.712mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1558.784mil|Location2.X=1570.034mil|Location1.Y=1231.462mil|Location2.Y=1242.712mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.15mm &lt; 0.254mm) Between Pad R3-2(14.986mm,5.649mm) on Bottom Layer And Track (14.161mm,6.274mm)(15.811mm,6.274mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.15mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1612.426mil|Location2.X=1623.676mil|Location1.Y=1228.509mil|Location2.Y=1239.759mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1612.426mil|Location2.X=1623.676mil|Location1.Y=1228.509mil|Location2.Y=1239.759mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.125mm &lt; 0.254mm) Between Pad R3-2(14.986mm,5.649mm) on Bottom Layer And Track (15.811mm,6.274mm)(15.811mm,5.487mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.125mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2140.825mil|Location2.X=2152.075mil|Location1.Y=1179.161mil|Location2.Y=1190.411mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2140.825mil|Location2.X=2152.075mil|Location1.Y=1179.161mil|Location2.Y=1190.411mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.242mm &lt; 0.254mm) Between Pad R4-1(28.301mm,4.826mm) on Multi-Layer And Track (29.301mm,4.826mm)(30.001mm,4.826mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.242mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2476.071mil|Location2.X=2487.321mil|Location1.Y=1179.536mil|Location2.Y=1190.786mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2476.071mil|Location2.X=2487.321mil|Location1.Y=1179.536mil|Location2.Y=1190.786mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.148mm &lt; 0.254mm) Between Pad R4-2(38.501mm,4.826mm) on Multi-Layer And Track (36.801mm,4.826mm)(37.501mm,4.826mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.148mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1879.178mil|Location2.X=1890.428mil|Location1.Y=1491.304mil|Location2.Y=1502.554mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1879.178mil|Location2.X=1890.428mil|Location1.Y=1491.304mil|Location2.Y=1502.554mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.2mm &lt; 0.254mm) Between Pad U1-4(23.574mm,11.049mm) on Bottom Layer And Track (22.474mm,12.949mm)(22.474mm,14.449mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.2mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1879.178mil|Location2.X=1890.428mil|Location1.Y=1357.446mil|Location2.Y=1368.696mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1879.178mil|Location2.X=1890.428mil|Location1.Y=1357.446mil|Location2.Y=1368.696mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.2mm &lt; 0.254mm) Between Pad U1-4(23.574mm,11.049mm) on Bottom Layer And Track (22.474mm,7.649mm)(22.474mm,9.149mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.2mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDI0GML4E3GOXSJPEJLUFDYHIMEGFUOT2ET0RRMVESUM4RZ2O3C0EK"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk to Silk (Clearance=0.254mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3359.552mil|Location2.X=3367.219mil|Location1.Y=1793.147mil|Location2.Y=1800.814mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3359.552mil|Location2.X=3367.219mil|Location1.Y=1793.147mil|Location2.Y=1800.814mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "P5" (58.445mm,18.847mm) on Top Overlay And Track (60.03mm,8.991mm)(60.03mm,24.791mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDCKEJC35WOQ1IGINUY4MHYDLXJHRA205X2HSEUBGPGEBTJDK4WYRG"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Net Antennae (Tolerance=0mm) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2226.5mil|Location2.X=2260.973mil|Location1.Y=1446.5mil|Location2.Y=1498.65mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2226.5mil|Location2.X=2260.973mil|Location1.Y=1446.5mil|Location2.Y=1498.65mil|Absolute=True">Net Antennae: Track (31.496mm,11.811mm)(33.02mm,11.811mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2231.5mil|Location2.X=2265.973mil|Location1.Y=1396.5mil|Location2.Y=1448.65mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\Designs\Pet accessories\PetWaterDispenser\PCB&amp;SCH\PetWaterDispenser\PetWaterDispenser.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2231.5mil|Location2.X=2265.973mil|Location1.Y=1396.5mil|Location2.Y=1448.65mil|Absolute=True">Net Antennae: Track (31.623mm,10.541mm)(33.02mm,10.541mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>
